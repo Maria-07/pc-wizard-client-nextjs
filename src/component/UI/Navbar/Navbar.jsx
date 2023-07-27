@@ -10,8 +10,8 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const currentRoute = usePathname();
 
-  //   const { data: session } = useSession();
-  //   console.log("session user", session);
+  const { data: session } = useSession();
+  console.log("session user", session);
 
   return (
     <div>
@@ -57,19 +57,40 @@ const Navbar = () => {
           <div className="text-base font-semibold ">Build Your pc with us</div>
 
           <div className="flex items-center gap-2">
-            <Link
-              className="text-primary hover:text-secondary text-base font-medium "
-              href={"/login"}
-            >
-              Login
-            </Link>
-            |
-            <Link
-              className="hover:text-secondary text-primary text-base font-medium "
-              href={"/signUp"}
-            >
-              Sign Up
-            </Link>
+            {!session?.user && (
+              <div className="flex items-center gap-2">
+                <Link
+                  className={
+                    currentRoute === "/login"
+                      ? "text-secondary hover:text-black text-base font-medium "
+                      : "text-primary hover:text-secondary text-base font-medium "
+                  }
+                  href={"/login"}
+                >
+                  Login
+                </Link>
+                |
+                <Link
+                  className={
+                    currentRoute === "/signUp"
+                      ? "text-secondary hover:text-black text-base font-medium "
+                      : "text-primary hover:text-secondary text-base font-medium "
+                  }
+                  href={"/signUp"}
+                >
+                  Sign Up
+                </Link>
+              </div>
+            )}
+
+            {session?.user && (
+              <button
+                className="text-secondary hover:text-black text-base font-medium "
+                onClick={() => signOut()}
+              >
+                Sign out
+              </button>
+            )}
           </div>
         </div>
       </div>
