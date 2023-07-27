@@ -11,11 +11,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#438E93",
-        secondary: "#1B6273",
-        popover: "#ddedee",
-        accent: "#808080",
-        dark: "#050505",
+        primary: "#292929",
+        secondary: "#e6e6e6",
+        accent: "#ff9900",
+        popover: "#808080",
+        fontClr: "#050505",
       },
       fontFamily: {
         primary: ["EB Garamond", "serif"],
