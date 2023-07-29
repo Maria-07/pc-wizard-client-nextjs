@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import logo from "../../../assets/img/logo.png";
 import Image from "next/image";
+import NavbarSD from "./NavbarSD";
+import Hamburger from "hamburger-react";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -17,7 +18,7 @@ const Navbar = () => {
     <div>
       {" "}
       <div className="hidden md:block border border-b-1">
-        <div className="sm:w-[80%] px-1 sm:mx-auto py-1 flex justify-between">
+        <div className="sm:w-[80%] px-1 sm:mx-auto py-2 flex justify-between">
           <div>
             {" "}
             <Image
@@ -30,9 +31,7 @@ const Navbar = () => {
           <div className="flex items-center gap-5">
             <Link
               className={
-                currentRoute === "/"
-                  ? "text-primary text-base font-semibold border-b-[2px] border-accent h-8"
-                  : "text-dark text-base font-semibold h-8 hover:text-primary hover:border-primary hover:border-b-[2px] transition-all duration-100"
+                currentRoute === "/" ? "active custom_link" : "custom_link"
               }
               href={"/"}
             >
@@ -40,7 +39,7 @@ const Navbar = () => {
             </Link>
             <Link href={"/pc-components"}>
               {" "}
-              <button className="text-primary text-base font-semibold mb-2 ">
+              <button className="text-primary text-base font-semibold ">
                 Catagories
               </button>
             </Link>
@@ -54,6 +53,11 @@ const Navbar = () => {
             )} */}
           </div>
         </div>
+      </div>
+      <div className="md:hidden block border border-b-1">
+        <Hamburger toggled={open} toggle={setOpen} />
+
+        <NavbarSD isOpen={open} setOpen={setOpen}></NavbarSD>
       </div>
       <div className="bg-accent py-1">
         <div className="sm:w-[80%] sm:mx-auto flex flex-wrap items-center justify-between px-1">
