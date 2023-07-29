@@ -39,8 +39,11 @@ const OPTIONS = ["In Stock", "Out of stock"];
 const Sidebar = () => {
   const currentRoute = usePathname();
 
-  const [selectedItems, setSelectedItems] = useState([]);
-  //   console.log("selectedItems", selectedItems);
+  const [selectedItems, setSelectedItems] = useState("");
+  console.log("selectedItems", selectedItems);
+  // const handleStatus = () => {
+  //   setSelectedItems();
+  // };
 
   const filteredOptions = OPTIONS.filter((o) => !selectedItems.includes(o));
   return (

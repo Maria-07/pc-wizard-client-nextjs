@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../UI/Navbar/Navbar";
+import Footer from "../UI/Footer/Footer";
 
 const RootLayout = ({ children }) => {
   return (
@@ -8,7 +9,7 @@ const RootLayout = ({ children }) => {
         <Navbar></Navbar>
       </div>
       <div>{children}</div>
-      <div className="bg-primary py-10">Footer</div>
+      <Footer></Footer>
     </div>
   );
 };
