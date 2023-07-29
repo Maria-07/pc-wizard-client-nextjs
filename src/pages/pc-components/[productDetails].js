@@ -1,5 +1,7 @@
 import RootLayout from "@/component/Layout/RootLayout";
+import Description from "@/component/UI/ProductDetails/Description";
 import ProductInfo from "@/component/UI/ProductDetails/ProductInfo";
+import Reviews from "@/component/UI/ProductDetails/Reviews";
 import SimilarProducts from "@/component/UI/ProductDetails/SimilarProducts";
 import { HomeOutlined, InboxOutlined } from "@ant-design/icons";
 import { Breadcrumb } from "antd";
@@ -8,7 +10,7 @@ import { AiFillPrinter, AiOutlineShareAlt } from "react-icons/ai";
 const ProductDetailPage = ({ singleData, similarData }) => {
   console.log(similarData, "similarData");
   return (
-    <div className="sm:w-[80%] px-3 sm:mx-auto py-2  min-h-[100vh]">
+    <div className="sm:w-[80%] px-3 sm:mx-auto py-2 min-h-[100vh]">
       <div>
         <Breadcrumb
           items={[
@@ -53,6 +55,8 @@ const ProductDetailPage = ({ singleData, similarData }) => {
         singleData={singleData}
         similarData={similarData}
       ></SimilarProducts>
+      <Description></Description>
+      <Reviews singleData={singleData}></Reviews>
     </div>
   );
 };

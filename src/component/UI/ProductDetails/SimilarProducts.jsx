@@ -94,9 +94,9 @@ const SimilarProducts = ({ singleData, similarData }) => {
             />
           </div>
         </div>
-        <div className="border-l-2 px-2">
+        <div className="border-l-2 px-8">
           <h1 className="text-lg text-accent font-semibold border-gray-200 pb-2">
-            Similar Products
+            Related Product
           </h1>
           {similarData?.data.map((product, i) => (
             <SimilarProduct key={i} product={product}></SimilarProduct>
