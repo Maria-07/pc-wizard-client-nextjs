@@ -9,7 +9,7 @@ const LoginForm = () => {
   } = useForm();
   const onSubmit = (data) => console.log(data);
   return (
-    <div className="mt-10">
+    <div className="mt-10 ">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <h1 className="input-title">

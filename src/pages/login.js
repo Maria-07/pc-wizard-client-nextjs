@@ -11,7 +11,7 @@ const login = () => {
   return (
     <div>
       {" "}
-      <div className="sm:w-[70%]  sm:mx-auto mt-[8%] my-10 px-5">
+      <div className="sm:w-[70%] min-h-[100vh] sm:mx-auto mt-[8%] my-10 px-5">
         <div className="grid sm:grid-cols-2 grid-cols-1">
           <div className="mx-auto">
             <Image

@@ -5,7 +5,7 @@ import { Breadcrumb } from "antd";
 const PcComponentLayout = ({ children }) => {
   return (
     <div className="sm:w-[80%] px-1 sm:mx-auto">
-      <div className="mt-3">
+      <div className="mt-3 px-2">
         <Breadcrumb
           items={[
             {

@@ -1,0 +1,84 @@
+import RootLayout from "@/component/Layout/RootLayout";
+import ProductInfo from "@/component/UI/ProductDetails/ProductInfo";
+import { HomeOutlined, InboxOutlined } from "@ant-design/icons";
+import { Breadcrumb } from "antd";
+import { AiFillPrinter, AiOutlineShareAlt } from "react-icons/ai";
+
+const ProductDetailPage = ({ singleData, similarData }) => {
+  console.log(similarData, "similarData");
+  return (
+    <div className="sm:w-[80%] px-3 sm:mx-auto py-2  min-h-[100vh]">
+      <div>
+        <Breadcrumb
+          items={[
+            {
+              href: "/",
+              title: <HomeOutlined />,
+            },
+            {
+              href: "/pc-components",
+              title: (
+                <div className="flex items-center gap-2 mt-1 text-sm">
+                  <InboxOutlined />
+                  <span>Product List</span>
+                </div>
+              ),
+            },
+            {
+              title: <div className="mt-[2px]">{singleData?.data?.name}</div>,
+            },
+          ]}
+        />
+      </div>
+
+      <div className="my-5 flex items-center justify-between flex-wrap">
+        <div className="text-base">
+          <span className="text-sky-600">Intel</span>{" "}
+          <span className="text-primary font-semibold"> SKU: </span> 362020{" "}
+          <span className="text-primary font-semibold"> Mfr Part #: </span>
+          BX8071512400
+        </div>
+        <div className="flex items-center gap-2">
+          <button className="text-base font-semibold flex items-center gap-2">
+            <AiFillPrinter className="text-popover" /> Print
+          </button>
+          <button className="text-base font-semibold flex items-center gap-2">
+            <AiOutlineShareAlt className="text-popover" /> Share
+          </button>
+        </div>
+      </div>
+      <ProductInfo singleData={singleData}></ProductInfo>
+    </div>
+  );
+};
+
+export default ProductDetailPage;
+
+ProductDetailPage.getLayout = function getLayout(page) {
+  return <RootLayout>{page}</RootLayout>;
+};
+
+export const getServerSideProps = async (context) => {
+  const { params } = context;
+  const res = await fetch(
+    `http://localhost:5000/api/v1/products/${params.productDetails}`
+  );
+  const data = await res.json();
+
+  console.log("data", data?.data?.category);
+
+  // getting all data
+  const similarDataRes = await fetch(
+    `http://localhost:5000/api/v1/products?category=${data?.data?.category}`
+  );
+  const similarData = await similarDataRes.json();
+
+  console.log("similarData", similarData);
+
+  return {
+    props: {
+      singleData: data,
+      similarData: similarData,
+    },
+  };
+};
