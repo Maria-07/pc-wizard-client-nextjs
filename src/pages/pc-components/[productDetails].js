@@ -1,5 +1,6 @@
 import RootLayout from "@/component/Layout/RootLayout";
 import ProductInfo from "@/component/UI/ProductDetails/ProductInfo";
+import SimilarProducts from "@/component/UI/ProductDetails/SimilarProducts";
 import { HomeOutlined, InboxOutlined } from "@ant-design/icons";
 import { Breadcrumb } from "antd";
 import { AiFillPrinter, AiOutlineShareAlt } from "react-icons/ai";
@@ -48,6 +49,10 @@ const ProductDetailPage = ({ singleData, similarData }) => {
         </div>
       </div>
       <ProductInfo singleData={singleData}></ProductInfo>
+      <SimilarProducts
+        singleData={singleData}
+        similarData={similarData}
+      ></SimilarProducts>
     </div>
   );
 };

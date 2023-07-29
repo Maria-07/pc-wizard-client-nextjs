@@ -15,6 +15,7 @@ const ProductInfo = ({ singleData }) => {
     individualRating,
     averageRating,
   } = singleData?.data;
+
   return (
     <div>
       <h1 className="text-2xl font-semibold font-secondary border-b-2 py-2">
@@ -45,11 +46,11 @@ const ProductInfo = ({ singleData }) => {
               <span className="text-accent font-semibold">
                 Regular Price :{" "}
               </span>{" "}
-              {price + 100}
+              {price + 100}$
             </button>
             <button className=" px-2 py-1 border shadow-md bg-white rounded-xl text-sm font-semibold">
               <span className="text-accent font-semibold">Offer Price : </span>{" "}
-              {price}
+              {price}$
             </button>
             <button className=" px-2 py-1 border shadow-md bg-white rounded-xl text-sm font-semibold">
               <span className="text-accent font-semibold">Product Code : </span>{" "}
