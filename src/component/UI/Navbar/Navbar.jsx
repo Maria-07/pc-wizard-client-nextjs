@@ -38,9 +38,12 @@ const Navbar = () => {
             >
               Home
             </Link>
-            <button className="text-primary text-base font-semibold mb-2 ">
-              Catagories
-            </button>
+            <Link href={"/pc-components"}>
+              {" "}
+              <button className="text-primary text-base font-semibold mb-2 ">
+                Catagories
+              </button>
+            </Link>
 
             <Link className="input-button" href={"/pcBuilder"}>
               <button>PC Builder</button>

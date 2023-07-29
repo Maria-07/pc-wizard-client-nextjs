@@ -8,7 +8,7 @@ const RootLayout = ({ children }) => {
         <Navbar></Navbar>
       </div>
       <div>{children}</div>
-      <div>Footer</div>
+      <div className="bg-primary py-10">Footer</div>
     </div>
   );
 };
