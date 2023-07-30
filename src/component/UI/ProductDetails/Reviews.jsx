@@ -1,24 +1,13 @@
 import { Avatar, Rate } from "antd";
+import { format } from "date-fns";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { BsPersonCircle } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 const Reviews = ({ singleData }) => {
   const { data: session } = useSession();
-  const currentDate = new Date();
-  console.log("session user", session?.user?.name, currentDate);
-
-  const year = currentDate.getFullYear();
-  const month = currentDate.getMonth() + 1; // Months are zero-based, so we add 1 to get the correct month
-  const day = currentDate.getDate();
-  const hours = currentDate.getHours();
-  const minutes = currentDate.getMinutes();
-  const seconds = currentDate.getSeconds();
-
-  // Format the date as a string in a desired format
-  const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
-  console.log("Current Date:", formattedDate);
+  console.log("session user", session?.user?.name);
 
   const [review, setReview] = useState("");
   const [value, setValue] = useState(3);
@@ -30,7 +19,6 @@ const Reviews = ({ singleData }) => {
       name: session?.user?.name,
       individualRating: value,
       comment: review,
-      date: formattedDate,
     };
 
     console.log("data", data);
@@ -46,8 +34,34 @@ const Reviews = ({ singleData }) => {
           body: JSON.stringify(data),
         }
       );
+      toast.success("Review submitted successfully!", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+      });
     } catch (error) {
       console.error("Error submitting review:", error);
+    }
+  };
+
+  // Review days count
+  const calculateDaysAgo = (date) => {
+    const currentDate = new Date();
+    const reviewDate = new Date(date);
+    const timeDifference = currentDate.getTime() - reviewDate.getTime();
+
+    // Calculate days, hours, and minutes
+    const daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const hoursAgo = Math.floor(timeDifference / (1000 * 60 * 60));
+    const minutesAgo = Math.floor(timeDifference / (1000 * 60));
+
+    if (daysAgo >= 1) {
+      return `${daysAgo} day${daysAgo !== 1 ? "s" : ""} ago`;
+    } else if (hoursAgo >= 1) {
+      return `${hoursAgo} hour${hoursAgo !== 1 ? "s" : ""} ago`;
+    } else if (minutesAgo >= 1) {
+      return `${minutesAgo} minute${minutesAgo !== 1 ? "s" : ""} ago`;
+    } else {
+      return "Less than a minute ago";
     }
   };
 
@@ -82,12 +96,24 @@ const Reviews = ({ singleData }) => {
       {singleData?.data?.reviews.map((review, i) => (
         <>
           {" "}
-          <div key={i} className=" flex items-center flex-wrap gap-5">
+          <div key={i} className=" flex  flex-wrap gap-5">
             <Avatar icon={<BsPersonCircle className="text-3xl" />} />
             <div className="text-base text-primary font-medium font-primary">
               <p>{review.name}</p>
-              <div className="text-sm text-gray-500 font-medium font-primary">
-                <p>{review.date}</p>
+              <div className="text-sm text-gray-500 font-medium font-primary mb-3">
+                <p>
+                  {(() => {
+                    try {
+                      const createdAtDate = new Date(review?.date);
+                      return format(createdAtDate, "MMM dd, yyyy - hh:mm a");
+                    } catch (error) {
+                      return "Review Time Not Found";
+                    }
+                  })()}
+                </p>
+              </div>
+              <div className="text-sm text-gray-500 font-medium font-primary mb-3">
+                <p>{calculateDaysAgo(review?.date)}</p>
               </div>
             </div>
           </div>

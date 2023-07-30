@@ -23,7 +23,7 @@ const PcComponentLayout = ({ children }) => {
           ]}
         />
       </div>
-      <div className="min-h-[100vh] grid sm:grid-cols-5 grid-cols-1 py-8  gap-2">
+      <div className="min-h-[100vh] grid sm:grid-cols-2 lg:grid-cols-5 grid-cols-1 py-8  gap-2">
         <Sidebar></Sidebar>
         <div className="border rounded-md px-4 py-5  shadow-md bg-white sm:col-span-4">
           {children}

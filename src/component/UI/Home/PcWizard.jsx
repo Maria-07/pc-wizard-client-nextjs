@@ -15,7 +15,7 @@ const PcWizard = () => {
             alt="Picture of the author"
           />
         </div>
-        <div className="w-1/2 p-10">
+        <div className="lg:w-1/2 p-10">
           <h1 className="text-3xl font-primary my-5 text-primary ">
             Why Choose PC Wizard?
           </h1>

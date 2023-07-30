@@ -149,7 +149,7 @@ const NavbarSD = ({ isOpen, setOpen, session }) => {
       </div>
       <div>
         {" "}
-        <div className="">
+        <div className="mb-16">
           {!session?.user && (
             <div className="flex items-center gap-2 justify-center">
               <Link

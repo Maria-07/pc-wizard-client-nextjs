@@ -34,8 +34,8 @@ const Categories = [
 
 const Components = () => {
   return (
-    <div className="sm:w-[80%] px-1 sm:mx-auto py-2 mt-10 mb-24">
-      <div className="grid sm:grid-cols-4 md:grid-cols-7 grid-cols-1 gap-4">
+    <div className="sm:w-[80%] px-1  py-2 sm:mx-auto mx-10 mt-10 mb-24">
+      <div className="grid sm:grid-cols-3 lg:grid-cols-7 grid-cols-1 gap-4">
         {Categories?.map((c, i) => (
           <Link href={c.link} key={i}>
             <Card hoverable>

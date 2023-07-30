@@ -21,7 +21,7 @@ const HomePage = ({ products }) => {
 
         <div className="bg-primary pt-8 pb-36 px-3">
           <div className="sm:w-[80%] sm:mx-auto flex sm:flex-nowrap flex-wrap items-center justify-between">
-            <div className="text-2xl font-bold font-primary text-secondary w-1/2">
+            <div className="text-2xl font-bold font-primary text-secondary lg:w-1/2">
               Welcome to
               <span className="text-accent text-3xl">
                 {" "}
