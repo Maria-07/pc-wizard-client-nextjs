@@ -19,9 +19,10 @@ const Footer = () => {
             <div>
               {" "}
               <Image
+                priority={true}
                 src={logo}
-                width={150}
-                height={150}
+                width={"auto"}
+                height={"auto"}
                 alt="Picture of the author"
               />
             </div>

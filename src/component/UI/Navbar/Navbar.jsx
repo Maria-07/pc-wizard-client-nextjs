@@ -13,7 +13,7 @@ const Navbar = () => {
   const currentRoute = usePathname();
 
   const { data: session } = useSession();
-  console.log("session user", session);
+  // console.log("session user", session);
 
   const items = [
     {
@@ -86,6 +86,7 @@ const Navbar = () => {
           <div>
             {" "}
             <Image
+              priority={true}
               src={logo}
               width={150}
               height={150}
@@ -138,6 +139,7 @@ const Navbar = () => {
           <div className="mr-2">
             {" "}
             <Image
+              priority={true}
               src={logo}
               width={"130"}
               height={"auto"}

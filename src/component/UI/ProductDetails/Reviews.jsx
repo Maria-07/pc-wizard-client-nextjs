@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 const Reviews = ({ singleData }) => {
   const { data: session } = useSession();
-  console.log("session user", session?.user?.name);
+  // console.log("session user", session?.user?.name);
 
   const [review, setReview] = useState("");
   const [value, setValue] = useState(3);
@@ -94,9 +94,9 @@ const Reviews = ({ singleData }) => {
         </div>
       </div>
       {singleData?.data?.reviews.map((review, i) => (
-        <>
+        <div key={i}>
           {" "}
-          <div key={i} className=" flex  flex-wrap gap-5">
+          <div className=" flex  flex-wrap gap-5">
             <Avatar icon={<BsPersonCircle className="text-3xl" />} />
             <div className="text-base text-primary font-medium font-primary">
               <p>{review.name}</p>
@@ -123,7 +123,7 @@ const Reviews = ({ singleData }) => {
           </div>
           <div className="my-3 mx-12">{review.comment}</div>
           <hr className="my-5" />
-        </>
+        </div>
       ))}
     </div>
   );

@@ -11,6 +11,7 @@ const SimilarProduct = ({ product }) => {
           <div className="flex">
             <div>
               <Image
+                priority={true}
                 src={img}
                 width={"100"}
                 height={"100"}

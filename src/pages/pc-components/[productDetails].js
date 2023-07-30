@@ -8,7 +8,7 @@ import { Breadcrumb } from "antd";
 import { AiFillPrinter, AiOutlineShareAlt } from "react-icons/ai";
 
 const ProductDetailPage = ({ singleData, similarData }) => {
-  console.log(similarData, "similarData");
+  // console.log(similarData, "similarData");
   return (
     <div className="sm:w-[80%] px-3 sm:mx-auto py-2 min-h-[100vh]">
       <div>
@@ -67,16 +67,25 @@ ProductDetailPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export const getServerSideProps = async (context) => {
-  const { params } = context;
+export async function getStaticPaths() {
+  const res = await fetch("http://localhost:5000/api/v1/products");
+  const products = await res.json();
+
+  const paths = products?.data?.map((product) => ({
+    params: { productDetails: product.id },
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
   const res = await fetch(
     `http://localhost:5000/api/v1/products/${params.productDetails}`
   );
   const data = await res.json();
 
-  console.log("data", data?.data?.category);
+  console.log("catagories", data?.data?.category);
 
-  // getting all data
   const similarDataRes = await fetch(
     `http://localhost:5000/api/v1/products?category=${data?.data?.category}`
   );
@@ -84,10 +93,6 @@ export const getServerSideProps = async (context) => {
 
   console.log("similarData", similarData);
 
-  return {
-    props: {
-      singleData: data,
-      similarData: similarData,
-    },
-  };
-};
+  // Pass post data to the page via props
+  return { props: { singleData: data, similarData: similarData } };
+}

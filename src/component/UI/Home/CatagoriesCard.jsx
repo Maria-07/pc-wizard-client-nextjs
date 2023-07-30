@@ -10,6 +10,7 @@ const CatagoriesCard = ({ product }) => {
       <div className="">
         <div>
           <Image
+            priority={true}
             src={img}
             width={"200"}
             height={"200"}

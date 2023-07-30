@@ -16,6 +16,7 @@ const signUp = () => {
           <div className="grid sm:grid-cols-2 grid-cols-1">
             <div className="mx-auto">
               <Image
+                priority={true}
                 src={SignUp}
                 width={"auto"}
                 height={"auto"}

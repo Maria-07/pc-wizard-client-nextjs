@@ -33,6 +33,7 @@ const HomePage = ({ products }) => {
             <div>
               {" "}
               <Image
+                priority={true}
                 src={banner}
                 width={"auto"}
                 height={"auto"}

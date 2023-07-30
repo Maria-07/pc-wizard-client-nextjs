@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Rate } from "antd";
 
 const ProductInfo = ({ singleData }) => {
-  console.log(singleData);
+  // console.log(singleData);
   const {
     name,
     price,
@@ -24,6 +24,7 @@ const ProductInfo = ({ singleData }) => {
       <div className="flex my-10 gap-4 flex-wrap sm:flex-nowrap ">
         <div>
           <Image
+            priority={true}
             src={img}
             width={"550"}
             height={"400"}

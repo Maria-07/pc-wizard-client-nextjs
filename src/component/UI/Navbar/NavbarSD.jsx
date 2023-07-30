@@ -84,14 +84,9 @@ const NavbarSD = ({ isOpen, setOpen, session }) => {
       className={`fixed w-[300px] top-0 left-0 z-50 bg-accent h-screen overflow-x-hidden`}
     >
       <header className="flex justify-between items-center m-2">
-        <div className="text-xl font-bold">
+        <div className=" font-bold ml-2 font-secondary text-2xl">
           {" "}
-          <Image
-            src={logo}
-            width={"130"}
-            height={"auto"}
-            alt="Picture of the author"
-          />
+          PC Wizard
         </div>
         <Hamburger
           toggled={isOpen}
@@ -130,7 +125,7 @@ const NavbarSD = ({ isOpen, setOpen, session }) => {
                 menu={{
                   items,
                 }}
-                placement="bottomCenter"
+                placement="bottom"
                 arrow
               >
                 <button className="">Catagories</button>

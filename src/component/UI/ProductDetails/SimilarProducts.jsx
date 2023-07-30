@@ -3,7 +3,7 @@ import React from "react";
 import SimilarProduct from "./SimilarProduct";
 
 const SimilarProducts = ({ singleData, similarData }) => {
-  console.log(similarData);
+  // console.log(similarData);
 
   const { keyFeatures } = singleData?.data;
 

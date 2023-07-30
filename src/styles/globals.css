@@ -60,6 +60,30 @@ body {
   transition: ease-in-out 0.3s;
 }
 
+.input-button-black {
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 2em;
+  letter-spacing: 0.3px;
+  background-color: #292929;
+  background-position-y: 0%;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 3px;
+  border-width: 0px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px 0px #000000;
+  transition: ease-in-out 0.3s;
+}
+
+.input-button-black:hover {
+  color: #fff;
+  background-color: #ff9900;
+
+}
+
 .input-button:hover {
   color: #fff;
   font-weight: 600;

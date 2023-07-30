@@ -10,6 +10,7 @@ const ProductCardVertical = ({ product }) => {
       <div className="flex">
         <div>
           <Image
+            priority={true}
             src={img}
             width={"200"}
             height={"200"}
