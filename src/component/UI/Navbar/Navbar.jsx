@@ -6,6 +6,7 @@ import logo from "../../../assets/img/logo.png";
 import Image from "next/image";
 import NavbarSD from "./NavbarSD";
 import Hamburger from "hamburger-react";
+import { Dropdown } from "antd";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -13,6 +14,69 @@ const Navbar = () => {
 
   const { data: session } = useSession();
   console.log("session user", session);
+
+  const items = [
+    {
+      key: "1",
+      label: (
+        <Link href="/pc-components/processor">
+          <button className="text-primary font-semibold">
+            CPU / Processor
+          </button>
+        </Link>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <Link href="/pc-components/motherboard">
+          <button className="text-primary font-semibold">Motherboard</button>
+        </Link>
+      ),
+    },
+    {
+      key: "3",
+      label: (
+        <Link href="/pc-components/ram">
+          <button className="text-primary font-semibold">RAM</button>
+        </Link>
+      ),
+    },
+    {
+      key: "4",
+      label: (
+        <Link href="/pc-components/powerSupplyUnit">
+          <button className="text-primary font-semibold">
+            Power Supply Unit
+          </button>
+        </Link>
+      ),
+    },
+    {
+      key: "5",
+      label: (
+        <Link href="/pc-components/storageDevice">
+          <button className="text-primary font-semibold">Storage Device</button>
+        </Link>
+      ),
+    },
+    {
+      key: "6",
+      label: (
+        <Link href="/pc-components/monitor">
+          <button className="text-primary font-semibold">Monitor</button>
+        </Link>
+      ),
+    },
+    {
+      key: "7",
+      label: (
+        <Link href="/pc-components/others">
+          <button className="text-primary font-semibold">Others</button>
+        </Link>
+      ),
+    },
+  ];
 
   return (
     <div>
@@ -37,11 +101,23 @@ const Navbar = () => {
             >
               Home
             </Link>
-            <Link href={"/pc-components"}>
-              {" "}
-              <button className="text-primary text-base font-semibold ">
-                Catagories
-              </button>
+            <Link
+              className={
+                currentRoute === "/pc-components"
+                  ? "active custom_link"
+                  : "custom_link"
+              }
+              href={"/pc-components"}
+            >
+              <Dropdown
+                menu={{
+                  items,
+                }}
+                placement="bottomRight"
+                arrow
+              >
+                <button className="">Catagories</button>
+              </Dropdown>
             </Link>
 
             <Link className="input-button" href={"/pcBuilder"}>
@@ -54,10 +130,23 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      {/* for small device  */}
       <div className="md:hidden block border border-b-1">
-        <Hamburger toggled={open} toggle={setOpen} />
+        <div className="flex items-center justify-between gap-2">
+          {" "}
+          <Hamburger size={20} toggled={open} toggle={setOpen} />
+          <div className="mr-2">
+            {" "}
+            <Image
+              src={logo}
+              width={"130"}
+              height={"auto"}
+              alt="Picture of the author"
+            />
+          </div>
+        </div>
 
-        <NavbarSD isOpen={open} setOpen={setOpen}></NavbarSD>
+        <NavbarSD session={session} isOpen={open} setOpen={setOpen}></NavbarSD>
       </div>
       <div className="bg-accent py-1">
         <div className="sm:w-[80%] sm:mx-auto flex flex-wrap items-center justify-between px-1">

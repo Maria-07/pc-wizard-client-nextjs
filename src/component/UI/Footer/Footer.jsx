@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { RiFacebookBoxFill, RiInstagramLine } from "react-icons/ri";
-import logo from "../../../assets/img/logo.png";
+import logo from "../../../assets/img/logo3.png";
 import Image from "next/image";
 
 const Footer = () => {

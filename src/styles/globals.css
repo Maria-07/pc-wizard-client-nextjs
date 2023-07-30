@@ -135,7 +135,7 @@ body {
 
 .custom_link:before {
   content: '';
-  background: #ff9900;
+  background: #ff8800;
   display: block;
   position: absolute;
   bottom: -3px;
@@ -157,11 +157,9 @@ body {
 
 /* style for mobile menu  */
 .custom_link_.active_ {
-  background-color: #292929;
   color: white;
 }
 
 .custom_link_ {
-  background-color: white;
   color: black;
 }

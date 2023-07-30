@@ -1,14 +1,54 @@
 import { Avatar, Rate } from "antd";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { BsPersonCircle } from "react-icons/bs";
 
 const Reviews = ({ singleData }) => {
+  const { data: session } = useSession();
+  const currentDate = new Date();
+  console.log("session user", session?.user?.name, currentDate);
+
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth() + 1; // Months are zero-based, so we add 1 to get the correct month
+  const day = currentDate.getDate();
+  const hours = currentDate.getHours();
+  const minutes = currentDate.getMinutes();
+  const seconds = currentDate.getSeconds();
+
+  // Format the date as a string in a desired format
+  const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+  console.log("Current Date:", formattedDate);
+
   const [review, setReview] = useState("");
   const [value, setValue] = useState(3);
 
-  const handleReview = () => {
-    console.log(review);
-    console.log(value);
+  const handleReview = async () => {
+    // console.log(review);
+    // console.log(value);
+    const data = {
+      name: session?.user?.name,
+      individualRating: value,
+      comment: review,
+      date: formattedDate,
+    };
+
+    console.log("data", data);
+
+    try {
+      await fetch(
+        `http://localhost:5000/api/v1/products/${singleData?.data?.id}/reviews`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+    } catch (error) {
+      console.error("Error submitting review:", error);
+    }
   };
 
   return (
@@ -51,12 +91,12 @@ const Reviews = ({ singleData }) => {
               </div>
             </div>
           </div>
-          <div className="text-sm text-gray-400 mb-2">
+          <div className="text-sm text-gray-400  ml-12 mb-5">
             <Rate allowHalf disabled defaultValue={review.individualRating} />{" "}
             {review.individualRating} out of 5
           </div>
           <div className="my-3 mx-12">{review.comment}</div>
-          <hr className="my-3" />
+          <hr className="my-5" />
         </>
       ))}
     </div>
