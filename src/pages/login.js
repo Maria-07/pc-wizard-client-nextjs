@@ -39,7 +39,8 @@ const login = () => {
                 <button
                   onClick={() =>
                     signIn("google", {
-                      callbackUrl: "http://localhost:3000/",
+                      callbackUrl:
+                        "https://pc-wizard-client-nextjs.vercel.app/",
                     })
                   }
                   className="flex items-center gap-2 input-button"
@@ -50,7 +51,8 @@ const login = () => {
                 <button
                   onClick={() =>
                     signIn("github", {
-                      callbackUrl: "http://localhost:3000/",
+                      callbackUrl:
+                        "https://pc-wizard-client-nextjs.vercel.app/",
                     })
                   }
                   className="flex items-center gap-2 input-button"

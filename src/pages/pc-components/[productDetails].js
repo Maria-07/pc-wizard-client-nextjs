@@ -68,7 +68,9 @@ ProductDetailPage.getLayout = function getLayout(page) {
 };
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:5000/api/v1/products");
+  const res = await fetch(
+    "https://pc-wizard-auth-service.vercel.app/api/v1/products"
+  );
   const products = await res.json();
 
   const paths = products?.data?.map((product) => ({
@@ -80,14 +82,14 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const res = await fetch(
-    `http://localhost:5000/api/v1/products/${params.productDetails}`
+    `https://pc-wizard-auth-service.vercel.app/api/v1/products/${params.productDetails}`
   );
   const data = await res.json();
 
   console.log("catagories", data?.data?.category);
 
   const similarDataRes = await fetch(
-    `http://localhost:5000/api/v1/products?category=${data?.data?.category}`
+    `https://pc-wizard-auth-service.vercel.app/api/v1/products?category=${data?.data?.category}`
   );
   const similarData = await similarDataRes.json();
 

@@ -25,7 +25,7 @@ const Reviews = ({ singleData }) => {
 
     try {
       await fetch(
-        `http://localhost:5000/api/v1/products/${singleData?.data?.id}/reviews`,
+        `https://pc-wizard-auth-service.vercel.app/api/v1/products/${singleData?.data?.id}/reviews`,
         {
           method: "POST",
           headers: {

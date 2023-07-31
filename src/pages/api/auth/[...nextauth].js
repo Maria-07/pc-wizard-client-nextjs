@@ -14,7 +14,7 @@ export const authOptions = {
     }),
   ],
   pages: {
-    signIn: "/login",
+    signIn: "https://pc-wizard-client-nextjs.vercel.app/login",
   },
 };
 

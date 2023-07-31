@@ -26,7 +26,9 @@ PcComponentsPage.getLayout = function getLayout(page) {
 };
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:5000/api/v1/products");
+  const res = await fetch(
+    "https://pc-wizard-auth-service.vercel.app/api/v1/products"
+  );
   const data = await res.json();
   // console.log(data);
 

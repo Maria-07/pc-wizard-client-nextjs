@@ -27,7 +27,7 @@ storageDevice.getLayout = function getLayout(page) {
 
 export const getStaticProps = async () => {
   const similarDataRes = await fetch(
-    `http://localhost:5000/api/v1/products?category=Storage Device`
+    `https://pc-wizard-auth-service.vercel.app/api/v1/products?category=Storage Device`
   );
   const similarData = await similarDataRes.json();
   // console.log("similarData", similarData);

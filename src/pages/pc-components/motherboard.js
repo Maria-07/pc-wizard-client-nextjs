@@ -1,6 +1,7 @@
 import PcComponentLayout from "@/component/Layout/PcComponentLayout";
 import RootLayout from "@/component/Layout/RootLayout";
 import SimilarProductCard from "@/component/UI/Product/SimilarProductCard";
+import { useSession } from "next-auth/react";
 
 const motherboard = ({ similarData }) => {
   return (
@@ -27,7 +28,7 @@ motherboard.getLayout = function getLayout(page) {
 
 export const getStaticProps = async () => {
   const similarDataRes = await fetch(
-    `http://localhost:5000/api/v1/products?category=Motherboard`
+    `https://pc-wizard-auth-service.vercel.app/api/v1/products?category=Motherboard`
   );
   const similarData = await similarDataRes.json();
   // console.log("similarData", similarData);
