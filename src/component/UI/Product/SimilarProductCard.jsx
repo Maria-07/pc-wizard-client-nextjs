@@ -5,10 +5,13 @@ import img from "../../../assets/img/cooler.jpg";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const SimilarProductCard = ({ product }) => {
   const { data: session } = useSession();
   console.log(session);
+
+  const router = useRouter();
 
   const [copiedProductId, setCopiedProductId] = useState(null);
 
@@ -31,12 +34,14 @@ const SimilarProductCard = ({ product }) => {
       if (response.ok) {
         // Product data copied successfully
         setCopiedProductId(productId);
-        toast.success("Successfully added product");
+        toast.success(`Successfully added  ${product.name}`);
       } else {
         // Handle the error if necessary
         toast.error("Already added this product");
         console.error("Failed to copy product data:", response.statusText);
       }
+
+      router.push("/pcBuilder", undefined, { shallow: true });
     } catch (error) {
       console.error("Error while copying product data:", error.message);
     }

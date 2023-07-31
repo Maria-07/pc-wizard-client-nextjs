@@ -1,12 +1,14 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import RootLayout from "@/component/Layout/RootLayout";
-import { Breadcrumb, Card } from "antd";
+import { Breadcrumb, Button, Card } from "antd";
 import { HomeOutlined, LaptopOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import logo from "../assets/img/logo.png";
 import Link from "next/link";
 import { GiCircuitry } from "react-icons/gi";
 import { getSession, useSession } from "next-auth/react";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Categories = [
   {
@@ -42,6 +44,8 @@ const Categories = [
 const pcBuilder = ({ data }) => {
   const { data: session } = useSession();
   console.log(session?.user?.email);
+
+  const [tprice, setTprice] = useState(0);
 
   const filteredPCBuilds = data?.data?.filter(
     (build) => build.userEmail === session?.user?.email
@@ -85,16 +89,54 @@ const pcBuilder = ({ data }) => {
               PC Builder - Build Your Own Computer - PC Wizard
             </h1>
           </div>
-          <div>
-            <div>Total : {filteredPCBuilds.length}</div>
-            <button disabled className="input-button ">
-              Submit
-            </button>
+          <div className="flex items-center justify-between gap-2 flex-wrap">
+            <div>
+              <div className="text-base font-semibold my-2">
+                Total : {filteredPCBuilds.length}
+              </div>
+              {/* <button disabled className="input-button-black">
+                Price : {tprice}
+              </button>{" "} */}
+            </div>
+            {filteredPCBuilds.length < 6 ? (
+              <Button disabled className="">
+                Submit
+              </Button>
+            ) : (
+              <button
+                onClick={() => {
+                  toast.success(`Your PC Build Successful`);
+                }}
+                className="input-button "
+              >
+                Submit
+              </button>
+            )}
           </div>
-          {filteredPCBuilds?.map((p, i) => (
-            <div key={i}>{p?.product?.name}</div>
-          ))}
-          <div className="text-xs bg-primary text-secondary px-3 py-1 my-8">
+          {filteredPCBuilds.length != 0 && (
+            <>
+              <div className="text-xs bg-primary text-secondary rounded-md px-3 py-1 my-8">
+                Added Components
+              </div>{" "}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {filteredPCBuilds?.map((p, i) => (
+                  <div key={i}>
+                    <div className="border rounded-md">
+                      <div className="flex items-center flex-wrap">
+                        <div className="font-semibold text-sm w-[200px] bg-secondary text-primary px-2 py-1">
+                          {p?.product?.category}
+                        </div>
+                        {/* {setTprice(p?.product?.price)} */}
+                        <div className="text-sm px-4"> {p?.product?.name}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          <div className="text-xs bg-primary text-secondary rounded-md px-3 py-1 my-8">
             Core Component
           </div>
           <div>
